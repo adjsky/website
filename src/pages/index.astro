@@ -1,9 +1,9 @@
 ---
 import MainLayout from "@/layouts/MainLayout.astro"
 import CoolLink from "@/components/CoolLink.astro"
+import SwapContent from "@/components/SwapContent"
 
-import resume from "@/lib/data/resume"
-import projects from "@/lib/data/projects"
+import { resume, projects, like } from "@/lib/data"
 ---
 
 <MainLayout title="COOL PAGE!!!">
@@ -12,6 +12,12 @@ import projects from "@/lib/data/projects"
       <h1 class="text-2xl sm:text-[45px] sm:leading-[1.125]">
         I'm Kirill. I'm a developer, gamer and just a curious guy.
       </h1>
+      <hr class="border-none py-2 sm:py-3" />
+      <h2 class="text-2xl sm:text-[45px] sm:leading-[1.125]">
+        <span>I like</span>
+        <SwapContent className="text-yellow" content={like} client:only="react"
+        />
+      </h2>
       <hr class="border-none py-4" />
       <nav>
         <ul
