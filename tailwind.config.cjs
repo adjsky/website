@@ -21,6 +21,9 @@ module.exports = {
           "0%": { opacity: 0 },
           "100%": { opacity: 1 }
         }
+      },
+      fontSize: {
+        "4.5xl": ["2.875rem", "3.125rem"]
       }
     }
   },
