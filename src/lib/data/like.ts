@@ -4,7 +4,7 @@ const like = [
   "using new tech",
   "using Astro",
   "watching anime",
-  "learning new tech",
+  "learning",
   "sleeping"
 ]
 
