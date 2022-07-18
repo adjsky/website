@@ -5,12 +5,12 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,svelte,ts,tsx,vue}"],
   theme: {
     colors: {
-      white: "#F7F7E8",
-      black: "#18181b",
-      gray: "#262626",
-      blue: "#67e8f9",
-      pink: "#f472b6",
-      yellow: "#FDE047"
+      white: "#F4F4F6",
+      black: "#2F323A",
+      gray: "#40444F",
+      blue: "#8EBCE1",
+      pink: "#E1ACC1",
+      accent: "#DEBAC0"
     },
     extend: {
       fontFamily: {
@@ -26,6 +26,9 @@ module.exports = {
         "4.5xl": ["2.875rem", "3.125rem"]
       }
     }
+  },
+  future: {
+    hoverOnlyWhenSupported: true
   },
   plugins: []
 }
