@@ -1,7 +1,7 @@
 const resume = [
   {
     company: "Confidential (NDA)",
-    period: "January 2022 - Present",
+    period: "December 2021 - Present",
     problems: [
       "Development of an internal tool for a fintech product from scratch",
       "Development of a product web application from scratch",
@@ -16,7 +16,7 @@ const resume = [
   },
   {
     company: "ASSETUX",
-    period: "November 2021 - May 2022",
+    period: "November 2021 - July 2022",
     problems: [
       "Requirements analysis, proposal of technical solutions",
       "Development of a crypto fintech product from scratch",
