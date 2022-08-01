@@ -43,7 +43,7 @@ const resume = [
   },
   {
     company: "FREELANCE",
-    period: "April 2021 - August 2021",
+    period: "December 2020 - August 2021",
     problems: [
       "Frontend development (React, Next.js, PWA, SPA, landings and etc.)",
       "Backend development using Golang and Node.js"
