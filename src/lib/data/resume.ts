@@ -35,7 +35,7 @@ const resume = [
   },
   {
     company: "PRODCREATORS",
-    period: "September 2021 - May 2022",
+    period: "September 2021 - July 2022",
     problems: [
       "Development of web solutions for outsourcing",
       "Tech stack: TypeScript, React / Preact, Next.js, Redux / Jotai, React Query, NextAuth.js, react-hook-form, tRPC, prisma, styled-components, jest"
