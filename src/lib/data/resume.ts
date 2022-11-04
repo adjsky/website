@@ -15,30 +15,27 @@ const resume = [
     ]
   },
   {
-    company: "ASSETUX",
-    period: "November 2021 - July 2022",
-    problems: [
-      "Requirements analysis, proposal of technical solutions",
-      "Development of a crypto fintech product from scratch",
-      "Creating UI components based on design in Figma",
-      "Participation in REST API design"
-    ]
-  },
-  {
-    company: "FLASHBACK ONE, INC.",
-    period: "September 2021 - November 2021",
-    problems: [
-      "Company web application development",
-      "Legacy code support, its refactoring and optimization",
-      "Automation of various CI/CD processes"
-    ]
-  },
-  {
     company: "PRODCREATORS",
     period: "September 2021 - July 2022",
-    problems: [
-      "Development of web solutions for outsourcing",
-      "Tech stack: TypeScript, React / Preact, Next.js, Redux / Jotai, React Query, NextAuth.js, react-hook-form, tRPC, prisma, styled-components, jest"
+    problems: ["Development of web solutions for outsourcing"],
+    projects: [
+      {
+        name: "FLASHBACK ONE, INC.",
+        problems: [
+          "Company web application development",
+          "Legacy code support, its refactoring and optimization",
+          "Automation of various CI/CD processes"
+        ]
+      },
+      {
+        name: "ASSETUX",
+        problems: [
+          "Requirements analysis, proposal of technical solutions",
+          "Development of a crypto fintech product from scratch",
+          "Creating UI components based on design in Figma",
+          "Participation in REST API design"
+        ]
+      }
     ]
   },
   {

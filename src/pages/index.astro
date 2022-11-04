@@ -83,6 +83,20 @@ import { resume, projects, like } from "@/lib/data"
                 <li class="sm:text-lg">{problem}</li>
               ))}
             </ul>
+
+            {item.projects &&
+              item.projects.map((project, index) => (
+                <div class="pt-3">
+                  <h4 class="text-blue text-lg font-semibold leading-none sm:text-xl">
+                    {index + 1}. {project.name}
+                  </h4>
+                  <ul class="list-disc pl-6">
+                    {project.problems.map((problem) => (
+                      <li class="sm:text-lg">{problem}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
           </article>
         ))}
       </div>
