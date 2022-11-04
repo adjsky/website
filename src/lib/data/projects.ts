@@ -1,4 +1,3 @@
-
 const projects = [
   {
     title: "ASSETUX",
@@ -7,10 +6,10 @@ const projects = [
     link: "https://assetux.com"
   },
   {
-    title: "FlashBack.one",
-    description: "A NFT ticketing platform",
-    preview: "/previews/flashback.jpeg",
-    link: "https://flashback.one"
+    title: "Evil Cards",
+    description: "A funny game (under development)",
+    preview: "/previews/evil-cards.jpg",
+    link: "https://github.com/adjsky/evil-cards"
   }
 ]
 
