@@ -1,15 +1,15 @@
 const projects = [
   {
     title: "ASSETUX",
-    description: "A fiat-to-crypto exchange build on interoperable DeFi",
+    description: "Fiat-to-crypto exchange build on interoperable DeFi",
     preview: "/previews/assetux.jpeg",
     link: "https://assetux.com"
   },
   {
     title: "Evil Cards",
-    description: "A funny game (under development)",
+    description: "Online version of the popular card game",
     preview: "/previews/evil-cards.jpg",
-    link: "https://github.com/adjsky/evil-cards"
+    link: "https://evilcards.online"
   }
 ]
 
