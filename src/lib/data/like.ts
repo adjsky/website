@@ -1,10 +1,12 @@
 const like = [
-  "using Next.js",
-  "using new tech",
-  "using Astro",
-  "watching anime",
-  "learning new",
-  "sleeping"
+  "typescript",
+  "rust",
+  "cowboy bebop",
+  "anime",
+  "new tech",
+  "making games",
+  "golang",
+  "gaming"
 ]
 
 export default like
