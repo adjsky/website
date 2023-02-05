@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@astrojs/react': ^2.0.2
   '@astrojs/tailwind': ^3.0.1
+  '@fontsource/source-code-pro': ^4.5.14
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
   astro: ^2.0.6
@@ -21,6 +22,7 @@ specifiers:
 devDependencies:
   '@astrojs/react': 2.0.2_fxtgt6bjwd6p4cwoordejim2zi
   '@astrojs/tailwind': 3.0.1_jiulpwjund37q6yckwlgwo54mu
+  '@fontsource/source-code-pro': 4.5.14
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
   astro: 2.0.6
@@ -602,6 +604,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@fontsource/source-code-pro/4.5.14:
+    resolution: {integrity: sha512-EWE0djE7wFCBmExWa9oT1vIp+qj5MUroVvXWb9G7Ig4t4aXDd9QDidYZzMzNemb8gQxTdOzGmhx6EZnDTFMh5Q==}
+    dev: true
 
   /@jridgewell/gen-mapping/0.1.1:
     resolution: {integrity: sha512-sQXCasFk+U8lWYEe66WxRDOE9PjVz4vSM51fTu3Hw+ClTpUSQb718772vH3pyS5pShp6lvQM7SxgIDXXXmOX7w==}
