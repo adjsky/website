@@ -1,10 +1,6 @@
 ---
 import clsx from "clsx"
 
-export interface Props {
-  href: string
-}
-
 const { href } = Astro.props
 ---
 
@@ -15,5 +11,5 @@ const { href } = Astro.props
     "after:rounded-sm after:absolute after:left-[-2px] after:right-[-2px] after:bottom-0 after:z-[-1] after:h-0.5 after:bg-gradient-to-r after:from-blue after:to-pink after:transition-all hover:after:h-full"
   )}
 >
-  <slot></slot>
+  <slot />
 </a>
