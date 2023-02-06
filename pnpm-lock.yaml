@@ -3,9 +3,11 @@ lockfileVersion: 5.4
 specifiers:
   '@astrojs/react': ^2.0.2
   '@astrojs/tailwind': ^3.0.1
+  '@fontsource/noto-sans': ^4.5.11
   '@fontsource/source-code-pro': ^4.5.14
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
+  '@types/react-highlight': ^0.12.5
   astro: ^2.0.6
   autoprefixer: ^10.4.13
   clsx: ^1.2.1
@@ -15,6 +17,7 @@ specifiers:
   prettier-plugin-tailwindcss: ^0.2.2
   react: ^18.2.0
   react-dom: ^18.2.0
+  react-highlight: ^0.15.0
   react-icons: ^4.7.1
   tailwindcss: ^3.2.4
   typescript: ^4.9.5
@@ -22,9 +25,11 @@ specifiers:
 devDependencies:
   '@astrojs/react': 2.0.2_fxtgt6bjwd6p4cwoordejim2zi
   '@astrojs/tailwind': 3.0.1_jiulpwjund37q6yckwlgwo54mu
+  '@fontsource/noto-sans': 4.5.11
   '@fontsource/source-code-pro': 4.5.14
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
+  '@types/react-highlight': 0.12.5
   astro: 2.0.6
   autoprefixer: 10.4.13_postcss@8.4.21
   clsx: 1.2.1
@@ -34,6 +39,7 @@ devDependencies:
   prettier-plugin-tailwindcss: 0.2.2_s2resyd53c3nawyksvkzb3naxm
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-highlight: 0.15.0
   react-icons: 4.7.1_react@18.2.0
   tailwindcss: 3.2.4_postcss@8.4.21
   typescript: 4.9.5
@@ -605,6 +611,10 @@ packages:
     dev: true
     optional: true
 
+  /@fontsource/noto-sans/4.5.11:
+    resolution: {integrity: sha512-lBX7FCjIjSrQ+iMuXUuO+mbjbnUsJyZANg/04PgkeeAYe+cwnX81ibbgrAk1F56M6/btIrWQoDjxsK6Sz8KoVQ==}
+    dev: true
+
   /@fontsource/source-code-pro/4.5.14:
     resolution: {integrity: sha512-EWE0djE7wFCBmExWa9oT1vIp+qj5MUroVvXWb9G7Ig4t4aXDd9QDidYZzMzNemb8gQxTdOzGmhx6EZnDTFMh5Q==}
     dev: true
@@ -766,6 +776,12 @@ packages:
 
   /@types/react-dom/18.0.10:
     resolution: {integrity: sha512-E42GW/JA4Qv15wQdqJq8DL4JhNpB3prJgjgapN3qJT9K2zO5IIAQh4VXvCEDupoqAwnz0cY4RlXeC/ajX5SFHg==}
+    dependencies:
+      '@types/react': 18.0.27
+    dev: true
+
+  /@types/react-highlight/0.12.5:
+    resolution: {integrity: sha512-P8+mTxltxDdQ+99l+pjn40clziSbNrZy5d5zmvG+j3jKzokAhCoCZlIRmmnFgETTYubuqwKjvXSlvesBZcTfvQ==}
     dependencies:
       '@types/react': 18.0.27
     dev: true
@@ -1609,6 +1625,10 @@ packages:
       hast-util-parse-selector: 3.1.1
       property-information: 6.2.0
       space-separated-tokens: 2.0.2
+    dev: true
+
+  /highlight.js/10.7.3:
+    resolution: {integrity: sha512-tzcUFauisWKNHaRkN4Wjl/ZA07gENAjFl3J/c480dprkGTg5EQstgaNFqBfUqCq54kZRIEcreTsAgF/m2quD7A==}
     dev: true
 
   /html-escaper/3.0.3:
@@ -2649,6 +2669,12 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: true
+
+  /react-highlight/0.15.0:
+    resolution: {integrity: sha512-5uV/b/N4Z421GSVVe05fz+OfTsJtFzx/fJBdafZyw4LS70XjIZwgEx3Lrkfc01W/RzZ2Dtfb0DApoaJFAIKBtA==}
+    dependencies:
+      highlight.js: 10.7.3
     dev: true
 
   /react-icons/4.7.1_react@18.2.0:
