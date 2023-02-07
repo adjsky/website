@@ -6,18 +6,21 @@ import TerminalHeader from "./terminal-header"
 import CodeBlock from "./code-block"
 
 const code = `// Who am I?
-const name = "Kirill Timchenko"
-const location = "St. Petersburg, Russia"
+let name = "Kirill Timchenko"
+let location = "St. Petersburg, Russia"
 
 // My preferences
-const preferences = [
+let preferences = [
   "typescript",
   "rust",
   "anime",
-  "making games",
+  "making games (and cool stuff)",
   "golang",
   "gaming"
 ]
+
+// Contacts
+let email = "infiernodeltroel@gmail.com"
 `
 
 const Terminal: React.FC = () => {
@@ -27,14 +30,16 @@ const Terminal: React.FC = () => {
     <div className="flex h-full w-full items-center justify-center p-4">
       <div
         className={clsx(
-          "z-10 flex h-full w-full flex-col overflow-hidden bg-primary/90 shadow-2xl transition-all",
-          !maximized && "max-w-[1100px] sm:max-h-[750px]",
-          maximized && "max-w-full sm:max-h-full"
+          "z-10 flex h-full w-full flex-col overflow-hidden rounded-t-[0.25rem] bg-primary/90 shadow-terminal transition-all",
+          !maximized && "md:max-h-[420px] md:max-w-[534px]",
+          maximized && "md:max-h-full md:max-w-full"
         )}
       >
         <TerminalHeader
-          onMaximize={() => setMaximized(true)}
-          onMinimize={() => setMaximized(false)}
+          onMaximize={(state) => setMaximized(state)}
+          onMinimize={() => {
+            alert("if this happens, i'll disappear, let's not do this?")
+          }}
           onClose={() => {
             alert("no, no, you can't close me")
           }}

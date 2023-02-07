@@ -1,16 +1,17 @@
-import React from "react"
+import React, { useState } from "react"
 import {
   IoCloseOutline,
   IoChevronUpOutline,
   IoChevronDownOutline
 } from "react-icons/io5/index.js"
+import { TbSquareRotated } from "react-icons/tb/index.js"
 import * as Tooltip from "@radix-ui/react-tooltip"
 import clsx from "clsx"
 
 type TerminalHeaderProps = {
   onClose?: () => void
   onMinimize?: () => void
-  onMaximize?: () => void
+  onMaximize?: (state: boolean) => void
 }
 
 const TerminalHeader: React.FC<TerminalHeaderProps> = ({
@@ -18,17 +19,29 @@ const TerminalHeader: React.FC<TerminalHeaderProps> = ({
   onMinimize,
   onMaximize
 }) => {
+  const [maximized, setMaximized] = useState(false)
+
   return (
-    <div className="relative flex h-[20px] flex-shrink-0 items-center justify-end rounded-t-md px-2">
+    <div className="relative flex h-[20px] flex-shrink-0 items-center justify-end px-1">
       <span className="absolute left-1/2 -translate-x-1/2 text-[0.5rem] text-white">
         adjsky@192:~
       </span>
-      <div className="flex gap-1">
+      <div className="flex gap-[0.1rem]">
         <ActionButton tooltip="Minimize" onClick={onMinimize}>
           <IoChevronDownOutline className="h-3 w-3 stroke-white group-hover:stroke-primary" />
         </ActionButton>
-        <ActionButton tooltip="Maximize" onClick={onMaximize}>
-          <IoChevronUpOutline className="h-3 w-3 stroke-white group-hover:stroke-primary" />
+        <ActionButton
+          tooltip={maximized ? "Restore" : "Maximize"}
+          onClick={() => {
+            setMaximized(!maximized)
+            onMaximize && onMaximize(!maximized)
+          }}
+        >
+          {maximized ? (
+            <TbSquareRotated className="h-3 w-3 stroke-white group-hover:stroke-primary" />
+          ) : (
+            <IoChevronUpOutline className="h-3 w-3 stroke-white group-hover:stroke-primary" />
+          )}
         </ActionButton>
         <ActionButton tooltip="Close" variant="close" onClick={onClose}>
           <IoCloseOutline className="h-3 w-3 stroke-white group-hover:stroke-primary" />

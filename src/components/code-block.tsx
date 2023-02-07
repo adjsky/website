@@ -1,14 +1,14 @@
 import React, { useRef, useEffect, useState } from "react"
 import clsx from "clsx"
 
-import convertPxToRem from "@/functions/convert-px-to-rem"
-import convertRemToPx from "@/functions/convert-rem-to-px"
-import useAnimatedTyping from "@/hooks/use-animated-typing"
-import useAvailableLines from "@/hooks/use-available-lines"
+import convertPxToRem from "@/render/convert-px-to-rem"
+import convertRemToPx from "@/render/convert-rem-to-px"
+import useAnimatedTyping from "@/utils/use-animated-typing"
+import useAvailableLines from "@/utils/use-available-lines"
 
-const fontSize = 1.125
-const lineHeight = 1.5625
-const charWidth = 0.675
+const fontSize = 0.875
+const lineHeight = fontSize * 1.25
+const charWidth = fontSize * 0.6
 
 type Offset = {
   y: number
@@ -40,7 +40,9 @@ const CodeBlock: React.FC<{ code: string }> = ({ code }) => {
       const scrollOffsetLeft = codeBlockRef.current.scrollLeft
       const lineNumbersWidth = boundingRect.width - scrollOffsetLeft
 
-      const topOffset = 0.5
+      const topOffset = convertPxToRem(
+        parseFloat(getComputedStyle(codeBlockRef.current).paddingTop)
+      )
       const scrollOffsetTop = convertPxToRem(codeBlockRef.current.scrollTop)
 
       setOffset({
@@ -54,6 +56,7 @@ const CodeBlock: React.FC<{ code: string }> = ({ code }) => {
   }, [])
 
   const { typed, line, position, typing } = useAnimatedTyping(code)
+
   const availableLines = useAvailableLines(
     codeBlockRef,
     convertRemToPx(lineHeight)
@@ -64,7 +67,7 @@ const CodeBlock: React.FC<{ code: string }> = ({ code }) => {
   return (
     <>
       <div
-        className="relative flex w-full flex-1 flex-col overflow-auto pt-2"
+        className="relative flex w-full flex-1 flex-col overflow-auto pt-[0.375rem]"
         ref={codeBlockRef}
       >
         {offset && (
@@ -88,7 +91,7 @@ const CodeBlock: React.FC<{ code: string }> = ({ code }) => {
               key={index}
               data-rowindex={index}
             >
-              <div className="w-12 flex-shrink-0 select-none pr-3 text-end font-medium text-yellow">
+              <div className="w-9 flex-shrink-0 select-none pr-2 text-end font-medium text-yellow">
                 {index + 1}
               </div>
               <div>
@@ -97,7 +100,7 @@ const CodeBlock: React.FC<{ code: string }> = ({ code }) => {
             </div>
           ))}
           {Array.from({
-            length: availableLines - typed.split("\n").length
+            length: availableLines - lines.length
           }).map((_, index) => (
             <div
               className="absolute flex items-center"
@@ -113,17 +116,19 @@ const CodeBlock: React.FC<{ code: string }> = ({ code }) => {
           ))}
         </pre>
       </div>
-      <div className="relative h-20 flex-shrink-0 px-1 font-mono text-lg font-semibold">
+      <div className="relative h-14 flex-shrink-0 px-1 font-mono text-xs font-semibold">
         <div className="text-black flex w-full justify-between bg-white leading-snug">
-          <span>me.ts [+]</span>
-          <div className="flex gap-8 sm:gap-28">
+          <span>me.ts</span>
+          <div className="flex gap-8 sm:gap-[5.2rem]">
             <span>
               {line},{typing ? position + 1 : `${position}-${position + 1}`}
             </span>
             <span>All</span>
           </div>
         </div>
-        {typing && <div className="absolute text-white">-- INSERT --</div>}
+        {typing && (
+          <div className="absolute leading-normal text-white">-- INSERT --</div>
+        )}
       </div>
     </>
   )

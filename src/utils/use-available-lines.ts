@@ -23,10 +23,22 @@ const useAvailableLines = (
     computeAvailableLines()
 
     window.addEventListener("resize", computeAvailableLines)
+
+    let resizeObserver: ResizeObserver | null = null
+
+    if (ref.current) {
+      resizeObserver = new ResizeObserver(computeAvailableLines)
+      resizeObserver.observe(ref.current)
+    }
+
     return () => {
       window.removeEventListener("resize", computeAvailableLines)
+
+      if (resizeObserver) {
+        resizeObserver.disconnect()
+      }
     }
-  }, [computeAvailableLines])
+  }, [computeAvailableLines, ref])
 
   return availableLines
 }
