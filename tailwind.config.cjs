@@ -10,7 +10,8 @@ module.exports = {
       yellow: "#f4f99d",
       purple: "#C9A8EE",
       cyan: "#9AEDFE",
-      pink: "#ff92d0"
+      pink: "#ff92d0",
+      red: "#FF98A2"
     },
     extend: {
       fontFamily: {

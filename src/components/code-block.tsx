@@ -24,8 +24,13 @@ const CodeBlock: React.FC<{ code: string }> = ({ code }) => {
     }
 
     const computeOffset = () => {
-      const lineNumbersElement =
-        codeBlockRef.current?.firstElementChild?.firstElementChild
+      if (!codeBlockRef.current) {
+        return
+      }
+
+      const lineNumbersElement = document.querySelector(
+        '[data-rowindex="0"]'
+      )?.firstElementChild
       if (!lineNumbersElement) {
         return
       }
@@ -57,33 +62,43 @@ const CodeBlock: React.FC<{ code: string }> = ({ code }) => {
   const lines = typed.split("\n")
 
   return (
-    <div className="relative flex w-full flex-1 flex-col pt-2 pb-16">
-      {offset && (
-        <Cursor
-          offset={offset}
-          line={line}
-          position={position}
-          typing={typing}
-        />
-      )}
+    <>
       <div
-        className="flex w-full flex-1 flex-col overflow-auto font-mono"
-        style={{
-          fontSize: `${fontSize}rem`,
-          lineHeight: `${lineHeight}rem`
-        }}
+        className="relative flex w-full flex-1 flex-col overflow-auto pt-2"
         ref={codeBlockRef}
       >
-        {lines.map((line, index) => (
-          <div className="flex items-center" key={index}>
-            <div className="pl-6 pr-3 font-medium text-yellow">{index + 1}</div>
-            <div>
-              <span className="whitespace-nowrap text-white">{line}</span>
+        {offset && (
+          <Cursor
+            offset={offset}
+            line={line}
+            position={position}
+            typing={typing}
+          />
+        )}
+        <pre
+          className="flex w-full flex-col font-mono"
+          style={{
+            fontSize: `${fontSize}rem`,
+            lineHeight: `${lineHeight}rem`
+          }}
+        >
+          {lines.map((line, index) => (
+            <div
+              className="flex items-center"
+              key={index}
+              data-rowindex={index}
+            >
+              <div className="w-12 flex-shrink-0 select-none pr-3 text-end font-medium text-yellow">
+                {index + 1}
+              </div>
+              <div>
+                <span className="text-white">{line}</span>
+              </div>
             </div>
-          </div>
-        ))}
-        {Array.from({ length: availableLines - typed.split("\n").length }).map(
-          (_, index) => (
+          ))}
+          {Array.from({
+            length: availableLines - typed.split("\n").length
+          }).map((_, index) => (
             <div
               className="absolute flex items-center"
               style={{
@@ -95,20 +110,22 @@ const CodeBlock: React.FC<{ code: string }> = ({ code }) => {
             >
               <div className="pl-1 font-[Times] font-bold text-purple">~</div>
             </div>
-          )
-        )}
+          ))}
+        </pre>
       </div>
-      <div className="relative px-1 font-mono text-lg font-semibold">
+      <div className="relative h-20 flex-shrink-0 px-1 font-mono text-lg font-semibold">
         <div className="text-black flex w-full justify-between bg-white leading-snug">
           <span>me.ts [+]</span>
-          <div className="flex gap-28">
-            <span>4,0-1</span>
+          <div className="flex gap-8 sm:gap-28">
+            <span>
+              {line},{typing ? position + 1 : `${position}-${position + 1}`}
+            </span>
             <span>All</span>
           </div>
         </div>
         {typing && <div className="absolute text-white">-- INSERT --</div>}
       </div>
-    </div>
+    </>
   )
 }
 

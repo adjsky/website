@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react"
 
+const newlineTypeDelayMs = 400
+const typeDelayMs = 100
+const startDelayMs = 1000
+const endDelayMs = 500
+
 const useAnimatedTyping = (code: string) => {
   const [position, setPosition] = useState(0)
   const [line, setLine] = useState(1)
@@ -23,11 +28,11 @@ const useAnimatedTyping = (code: string) => {
       setTyped((prev) => prev + currentChar)
 
       if (index == code.length - 1) {
-        timeout = setTimeout(() => setTyping(false), 500)
+        timeout = setTimeout(() => setTyping(false), endDelayMs)
       } else {
         timeout = setTimeout(
           () => animateCode(index + 1),
-          isNewLine ? 400 : 100
+          isNewLine ? newlineTypeDelayMs : typeDelayMs
         )
       }
     }
@@ -35,7 +40,7 @@ const useAnimatedTyping = (code: string) => {
     setTimeout(() => {
       setTyping(true)
       animateCode(0)
-    }, 500)
+    }, startDelayMs)
 
     return () => {
       if (timeout) {

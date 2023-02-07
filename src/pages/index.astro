@@ -1,29 +1,9 @@
 ---
-import CodeBlock from "@/components/code-block"
+import Terminal from "@/components/terminal"
 import MainLayout from "@/layouts/main-layout.astro"
-
-const code = `const name = "Kirill Timchenko"
-const location = "St. Petersburg, Russia"
-`
 ---
 
 <MainLayout title="adjsky@192:~">
-  <main
-    class="flex h-full w-full items-center justify-center bg-[url(/bg.jpg)] bg-cover bg-center bg-no-repeat p-4"
-  >
-    <div class="flex h-full max-h-[750px] w-full max-w-[1100px] flex-col">
-      <div
-        class="relative flex h-[20px] items-center justify-end rounded-t-md bg-primary/90"
-      >
-        <span
-          class="absolute left-1/2 -translate-x-1/2 text-[0.5rem] text-white"
-        >
-          adjsky@192:~
-        </span>
-      </div>
-      <div class="flex flex-1 bg-primary/90">
-        <CodeBlock client:only="react" code={code} />
-      </div>
-    </div>
-  </main>
+  <Terminal client:load />
+  <div class="pointer-events-none fixed inset-0 select-none bg-white"></div>
 </MainLayout>
