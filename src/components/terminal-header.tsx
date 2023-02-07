@@ -3,7 +3,7 @@ import {
   IoCloseOutline,
   IoChevronUpOutline,
   IoChevronDownOutline
-} from "react-icons/io5"
+} from "react-icons/io5/index.js"
 import * as Tooltip from "@radix-ui/react-tooltip"
 import clsx from "clsx"
 
