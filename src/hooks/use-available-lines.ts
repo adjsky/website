@@ -7,13 +7,16 @@ const useAvailableLines = (
   const [availableLines, setAvailableLines] = useState(0)
 
   const computeAvailableLines = useCallback(() => {
-    const fullHeight = ref.current?.getBoundingClientRect().height
-
-    if (!fullHeight) {
+    if (!ref.current) {
       return
     }
 
-    setAvailableLines(Math.trunc(fullHeight / lineHeight))
+    const fullHeight = ref.current.getBoundingClientRect().height
+    const cs = getComputedStyle(ref.current)
+
+    const actualHeight = fullHeight - parseFloat(cs.paddingTop)
+
+    setAvailableLines(Math.trunc(actualHeight / lineHeight))
   }, [ref, lineHeight])
 
   useEffect(() => {
