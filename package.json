@@ -12,8 +12,8 @@
   "devDependencies": {
     "@astrojs/react": "^2.0.2",
     "@astrojs/tailwind": "^3.0.1",
+    "@fontsource/jetbrains-mono": "^4.5.12",
     "@fontsource/noto-sans": "^4.5.11",
-    "@fontsource/source-code-pro": "^4.5.14",
     "@radix-ui/react-tooltip": "^1.0.3",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",

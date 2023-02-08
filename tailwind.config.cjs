@@ -18,7 +18,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Noto Sans", ...defaultTheme.fontFamily.sans],
-        mono: ["JetBbrains Mono", ...defaultTheme.fontFamily.mono]
+        mono: ["JetBrains Mono", ...defaultTheme.fontFamily.mono]
       },
       boxShadow: {
         terminal: "0 5px 30px 0 rgb(0 0 0 / 0.85)"

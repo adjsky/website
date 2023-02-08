@@ -3,8 +3,8 @@ lockfileVersion: 5.4
 specifiers:
   '@astrojs/react': ^2.0.2
   '@astrojs/tailwind': ^3.0.1
+  '@fontsource/jetbrains-mono': ^4.5.12
   '@fontsource/noto-sans': ^4.5.11
-  '@fontsource/source-code-pro': ^4.5.14
   '@radix-ui/react-tooltip': ^1.0.3
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
@@ -31,8 +31,8 @@ specifiers:
 devDependencies:
   '@astrojs/react': 2.0.2_fxtgt6bjwd6p4cwoordejim2zi
   '@astrojs/tailwind': 3.0.1_jiulpwjund37q6yckwlgwo54mu
+  '@fontsource/jetbrains-mono': 4.5.12
   '@fontsource/noto-sans': 4.5.11
-  '@fontsource/source-code-pro': 4.5.14
   '@radix-ui/react-tooltip': 1.0.3_5ndqzdd6t4rivxsukjv3i3ak2q
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
@@ -671,12 +671,12 @@ packages:
       - '@types/react'
     dev: true
 
-  /@fontsource/noto-sans/4.5.11:
-    resolution: {integrity: sha512-lBX7FCjIjSrQ+iMuXUuO+mbjbnUsJyZANg/04PgkeeAYe+cwnX81ibbgrAk1F56M6/btIrWQoDjxsK6Sz8KoVQ==}
+  /@fontsource/jetbrains-mono/4.5.12:
+    resolution: {integrity: sha512-LJF1ala1/u+wXZmESFqIk08FA9yGX4/uAAleCHmXUMgEjvNAYFHUQQ7eK5hQQoBOwh99cU5suTrqYqEkgzwzPA==}
     dev: true
 
-  /@fontsource/source-code-pro/4.5.14:
-    resolution: {integrity: sha512-EWE0djE7wFCBmExWa9oT1vIp+qj5MUroVvXWb9G7Ig4t4aXDd9QDidYZzMzNemb8gQxTdOzGmhx6EZnDTFMh5Q==}
+  /@fontsource/noto-sans/4.5.11:
+    resolution: {integrity: sha512-lBX7FCjIjSrQ+iMuXUuO+mbjbnUsJyZANg/04PgkeeAYe+cwnX81ibbgrAk1F56M6/btIrWQoDjxsK6Sz8KoVQ==}
     dev: true
 
   /@humanwhocodes/config-array/0.11.8:

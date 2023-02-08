@@ -1,5 +1,5 @@
 import "@/styles/hljs.css"
-import React, { useRef, useEffect, useState } from "react"
+import React, { useRef, useLayoutEffect, useEffect, useState } from "react"
 import hljs from "highlight.js"
 
 import convertPxToRem from "@/utils/convert-px-to-rem"
@@ -9,9 +9,12 @@ import useAvailableLines from "@/utils/use-available-lines"
 
 import type { RefObject } from "react"
 
-const fontSize = 0.875
-const lineHeight = fontSize * 1.25
-const charWidth = fontSize * 0.6
+const fontSizeRem = 0.875
+const lineHeightRem = 1.125
+
+// to keep things easy i'll leave here a hardcoded value
+// because i haven't found an easy solution to compute a single character width
+const charWidth = 0.525390625
 
 type Offset = {
   y: number
@@ -27,10 +30,10 @@ const CodeBlock: React.FC<{ code: string }> = ({ code }) => {
   const { typed, line, position, typing } = useAnimatedTyping(code)
   const availableLines = useAvailableLines(
     scrollContainerRef,
-    convertRemToPx(lineHeight)
+    convertRemToPx(lineHeightRem)
   )
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!codeRef.current) {
       return
     }
@@ -43,7 +46,7 @@ const CodeBlock: React.FC<{ code: string }> = ({ code }) => {
   return (
     <>
       <div
-        className="relative flex w-full flex-1 flex-col overflow-auto pt-[0.375rem] font-mono"
+        className="relative flex w-full flex-1 flex-col overflow-auto pt-[0.375rem]"
         ref={scrollContainerRef}
       >
         {offset && (
@@ -57,11 +60,14 @@ const CodeBlock: React.FC<{ code: string }> = ({ code }) => {
         <div
           className="flex"
           style={{
-            fontSize: `${fontSize}rem`,
-            lineHeight: `${lineHeight}rem`
+            fontSize: `${fontSizeRem}rem`,
+            lineHeight: `${lineHeightRem}rem`
           }}
         >
-          <div className="flex-shrink-0 select-none" ref={lineCountRef}>
+          <div
+            className="flex-shrink-0 select-none font-mono"
+            ref={lineCountRef}
+          >
             {lines.map((_, index) => (
               <div
                 key={index}
@@ -77,12 +83,12 @@ const CodeBlock: React.FC<{ code: string }> = ({ code }) => {
                 className="absolute flex items-center"
                 style={{
                   top: `${
-                    (index + lines.length) * lineHeight + (offset?.y ?? 0)
+                    (index + lines.length) * lineHeightRem + (offset?.y ?? 0)
                   }rem`
                 }}
                 key={index}
               >
-                <div className="pl-1 font-[Times] font-bold text-purple">~</div>
+                <div className="pl-1 text-purple">~</div>
               </div>
             ))}
           </div>
@@ -121,7 +127,7 @@ const Cursor: React.FC<{
     <div
       className="absolute"
       style={{
-        top: `${offset.y + (line - 1) * lineHeight}rem`,
+        top: `${offset.y + (line - 1) * lineHeightRem}rem`,
         left: `${offset.x + position * charWidth}rem`
       }}
     >
@@ -129,7 +135,7 @@ const Cursor: React.FC<{
         className="bg-white"
         style={{
           width: typing ? "1px" : `${charWidth}rem`,
-          height: `${lineHeight}rem`
+          height: `${lineHeightRem}rem`
         }}
       />
     </div>
