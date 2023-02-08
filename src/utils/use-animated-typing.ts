@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 const newlineTypeDelayMs = 400
 const typeDelayMs = 100
-const startDelayMs = 1000
+const startDelayMs = 600
 const endDelayMs = 500
 
 const useAnimatedTyping = (code: string) => {

@@ -6,14 +6,13 @@ import TerminalHeader from "./terminal-header"
 import CodeBlock from "./code-block"
 
 const code = `// Who am I?
-let title = "fullstack dev"
+let title = "Fullstack developer"
 let name = "Kirill Timchenko"
 let location = "St. Petersburg, Russia"
 
 let hobby = [
   "programming",
   "drawing",
-  "programming",
   "designing"
 ]
 
