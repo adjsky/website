@@ -29,8 +29,8 @@ const Terminal: React.FC = () => {
       <div
         className={clsx(
           "z-10 flex h-full w-full flex-col overflow-hidden rounded-t-[0.25rem] bg-primary/90 shadow-terminal transition-all",
-          !maximized && "md:max-h-[420px] md:max-w-[534px]",
-          maximized && "md:max-h-full md:max-w-full"
+          !maximized && "max-h-[420px] max-w-[534px]",
+          maximized && "max-h-full max-w-full"
         )}
       >
         <TerminalHeader
