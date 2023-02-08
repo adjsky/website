@@ -1,10 +1,13 @@
+import "@/styles/hljs.css"
 import React, { useRef, useEffect, useState } from "react"
-import clsx from "clsx"
+import hljs from "highlight.js"
 
-import convertPxToRem from "@/render/convert-px-to-rem"
-import convertRemToPx from "@/render/convert-rem-to-px"
+import convertPxToRem from "@/utils/convert-px-to-rem"
+import convertRemToPx from "@/utils/convert-rem-to-px"
 import useAnimatedTyping from "@/utils/use-animated-typing"
 import useAvailableLines from "@/utils/use-available-lines"
+
+import type { RefObject } from "react"
 
 const fontSize = 0.875
 const lineHeight = fontSize * 1.25
@@ -16,59 +19,32 @@ type Offset = {
 }
 
 const CodeBlock: React.FC<{ code: string }> = ({ code }) => {
-  const [offset, setOffset] = useState<Offset | null>(null)
-  const codeBlockRef = useRef<HTMLDivElement>(null)
+  const codeRef = useRef<HTMLElement>(null)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const lineCountRef = useRef<HTMLDivElement>(null)
+  const offset = useOffset(scrollContainerRef, lineCountRef)
+
+  const { typed, line, position, typing } = useAnimatedTyping(code)
+  const availableLines = useAvailableLines(
+    scrollContainerRef,
+    convertRemToPx(lineHeight)
+  )
+
   useEffect(() => {
-    if (!codeBlockRef.current) {
+    if (!codeRef.current) {
       return
     }
 
-    const computeOffset = () => {
-      if (!codeBlockRef.current) {
-        return
-      }
-
-      const lineNumbersElement = document.querySelector(
-        '[data-rowindex="0"]'
-      )?.firstElementChild
-      if (!lineNumbersElement) {
-        return
-      }
-
-      const boundingRect = lineNumbersElement.getBoundingClientRect()
-
-      const scrollOffsetLeft = codeBlockRef.current.scrollLeft
-      const lineNumbersWidth = boundingRect.width - scrollOffsetLeft
-
-      const topOffset = convertPxToRem(
-        parseFloat(getComputedStyle(codeBlockRef.current).paddingTop)
-      )
-      const scrollOffsetTop = convertPxToRem(codeBlockRef.current.scrollTop)
-
-      setOffset({
-        x: convertPxToRem(lineNumbersWidth),
-        y: topOffset - scrollOffsetTop
-      })
-    }
-
-    computeOffset()
-    codeBlockRef.current.addEventListener("scroll", computeOffset)
-  }, [])
-
-  const { typed, line, position, typing } = useAnimatedTyping(code)
-
-  const availableLines = useAvailableLines(
-    codeBlockRef,
-    convertRemToPx(lineHeight)
-  )
+    hljs.highlightElement(codeRef.current)
+  }, [codeRef, typed])
 
   const lines = typed.split("\n")
 
   return (
     <>
       <div
-        className="relative flex w-full flex-1 flex-col overflow-auto pt-[0.375rem]"
-        ref={codeBlockRef}
+        className="relative flex w-full flex-1 flex-col overflow-auto pt-[0.375rem] font-mono"
+        ref={scrollContainerRef}
       >
         {offset && (
           <Cursor
@@ -78,43 +54,44 @@ const CodeBlock: React.FC<{ code: string }> = ({ code }) => {
             typing={typing}
           />
         )}
-        <pre
-          className="flex w-full flex-col font-mono"
+        <div
+          className="flex"
           style={{
             fontSize: `${fontSize}rem`,
             lineHeight: `${lineHeight}rem`
           }}
         >
-          {lines.map((line, index) => (
-            <div
-              className="flex items-center"
-              key={index}
-              data-rowindex={index}
-            >
-              <div className="w-9 flex-shrink-0 select-none pr-2 text-end font-medium text-yellow">
+          <div className="flex-shrink-0 select-none" ref={lineCountRef}>
+            {lines.map((_, index) => (
+              <div
+                key={index}
+                className="w-9 pr-2 text-end font-medium text-yellow"
+              >
                 {index + 1}
               </div>
-              <div>
-                <span className="text-white">{line}</span>
+            ))}
+            {Array.from({
+              length: availableLines - lines.length
+            }).map((_, index) => (
+              <div
+                className="absolute flex items-center"
+                style={{
+                  top: `${
+                    (index + lines.length) * lineHeight + (offset?.y ?? 0)
+                  }rem`
+                }}
+                key={index}
+              >
+                <div className="pl-1 font-[Times] font-bold text-purple">~</div>
               </div>
-            </div>
-          ))}
-          {Array.from({
-            length: availableLines - lines.length
-          }).map((_, index) => (
-            <div
-              className="absolute flex items-center"
-              style={{
-                top: `${
-                  (index + lines.length) * lineHeight + (offset?.y ?? 0)
-                }rem`
-              }}
-              key={index}
-            >
-              <div className="pl-1 font-[Times] font-bold text-purple">~</div>
-            </div>
-          ))}
-        </pre>
+            ))}
+          </div>
+          <pre className="w-full">
+            <code className="typescript block w-full" ref={codeRef}>
+              {typed}
+            </code>
+          </pre>
+        </div>
       </div>
       <div className="relative h-14 flex-shrink-0 px-1 font-mono text-xs font-semibold">
         <div className="text-black flex w-full justify-between bg-white leading-snug">
@@ -142,14 +119,14 @@ const Cursor: React.FC<{
 }> = ({ offset, line, position, typing }) => {
   return (
     <div
-      className={clsx("absolute")}
+      className="absolute"
       style={{
         top: `${offset.y + (line - 1) * lineHeight}rem`,
         left: `${offset.x + position * charWidth}rem`
       }}
     >
       <div
-        className=" bg-white"
+        className="bg-white"
         style={{
           width: typing ? "1px" : `${charWidth}rem`,
           height: `${lineHeight}rem`
@@ -157,6 +134,47 @@ const Cursor: React.FC<{
       />
     </div>
   )
+}
+
+const useOffset = (
+  scrollContainerRef: RefObject<HTMLDivElement>,
+  lineCountRef: RefObject<HTMLDivElement>
+) => {
+  const [offset, setOffset] = useState<Offset | null>(null)
+
+  useEffect(() => {
+    if (!scrollContainerRef.current) {
+      return
+    }
+
+    const computeOffset = () => {
+      if (!scrollContainerRef.current || !lineCountRef.current) {
+        return
+      }
+
+      const lineCountElement = lineCountRef.current.firstElementChild
+      if (!lineCountElement) {
+        return
+      }
+
+      const boundingRect = lineCountElement.getBoundingClientRect()
+      const lineNumbersWidth = boundingRect.width
+
+      const topOffset = convertPxToRem(
+        parseFloat(getComputedStyle(scrollContainerRef.current).paddingTop)
+      )
+
+      setOffset({
+        x: convertPxToRem(lineNumbersWidth),
+        y: topOffset
+      })
+    }
+
+    computeOffset()
+    scrollContainerRef.current.addEventListener("scroll", computeOffset)
+  }, [lineCountRef, scrollContainerRef])
+
+  return offset
 }
 
 export default CodeBlock

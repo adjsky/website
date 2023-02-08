@@ -6,21 +6,20 @@ import TerminalHeader from "./terminal-header"
 import CodeBlock from "./code-block"
 
 const code = `// Who am I?
+let title = "fullstack dev"
 let name = "Kirill Timchenko"
 let location = "St. Petersburg, Russia"
 
-// My preferences
-let preferences = [
-  "typescript",
-  "rust",
-  "anime",
-  "making games (and cool stuff)",
-  "golang",
-  "gaming"
+let hobby = [
+  "programming",
+  "drawing",
+  "programming",
+  "designing"
 ]
 
 // Contacts
 let email = "infiernodeltroel@gmail.com"
+let github = "https://github.com/adjsky"
 `
 
 const Terminal: React.FC = () => {

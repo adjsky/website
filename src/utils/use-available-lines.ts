@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback } from "react"
+import type { RefObject } from "react"
 
-const useAvailableLines = (
-  ref: React.RefObject<HTMLElement>,
-  lineHeight: number
-) => {
+const useAvailableLines = (ref: RefObject<HTMLElement>, lineHeight: number) => {
   const [availableLines, setAvailableLines] = useState(0)
 
   const computeAvailableLines = useCallback(() => {
@@ -22,21 +20,13 @@ const useAvailableLines = (
   useEffect(() => {
     computeAvailableLines()
 
-    window.addEventListener("resize", computeAvailableLines)
-
-    let resizeObserver: ResizeObserver | null = null
-
+    const resizeObserver = new ResizeObserver(computeAvailableLines)
     if (ref.current) {
-      resizeObserver = new ResizeObserver(computeAvailableLines)
       resizeObserver.observe(ref.current)
     }
 
     return () => {
-      window.removeEventListener("resize", computeAvailableLines)
-
-      if (resizeObserver) {
-        resizeObserver.disconnect()
-      }
+      resizeObserver.disconnect()
     }
   }, [computeAvailableLines, ref])
 
