@@ -64,6 +64,7 @@ const ActionButton: React.FC<
         <Tooltip.Trigger asChild>
           <button
             onClick={onClick}
+            aria-label={tooltip}
             className={clsx(
               "group rounded-full p-px",
               variant == "basic" && "hover:bg-white",
