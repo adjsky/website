@@ -5,25 +5,23 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,svelte,ts,tsx,vue}"],
   theme: {
     colors: {
-      white: "#F4F4F6",
-      black: "#2F323A",
-      gray: "#40444F",
-      blue: "#8EBCE1",
-      pink: "#E1ACC1",
-      accent: "#DEBAC0"
+      white: "#F8F8F2",
+      primary: "#282A36",
+      secondary: "#383a59",
+      yellow: "#f4f99d",
+      purple: "#C9A8EE",
+      red: "#FF98A2",
+      pink: "#ff92d0",
+      cyan: "#9AEDFE",
+      blue: "#6272a4"
     },
     extend: {
       fontFamily: {
-        sans: ["Source Code Pro", ...defaultTheme.fontFamily.sans]
+        sans: ["Noto Sans", ...defaultTheme.fontFamily.sans],
+        mono: ["JetBbrains Mono", ...defaultTheme.fontFamily.mono]
       },
-      keyframes: {
-        fadeIn: {
-          "0%": { opacity: 0 },
-          "100%": { opacity: 1 }
-        }
-      },
-      fontSize: {
-        "4.5xl": ["2.875rem", "3.125rem"]
+      boxShadow: {
+        terminal: "0 5px 30px 0 rgb(0 0 0 / 0.85)"
       }
     }
   },

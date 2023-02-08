@@ -1,20 +1,17 @@
 ---
-import Header from "@/components/header.astro"
-import Footer from "@/components/footer.astro"
 import "@fontsource/source-code-pro"
+import "@fontsource/noto-sans"
 
 const { title } = Astro.props
 ---
 
-<html class="scroll-smooth">
+<html class="h-full">
   <head>
     <meta charset="utf-8" />
     <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
-  <body class="bg-black text-white">
-    <Header />
+  <body class="h-full font-sans">
     <slot />
-    <Footer />
   </body>
 </html>
