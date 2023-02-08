@@ -7,9 +7,13 @@ module.exports = {
     colors: {
       white: "#F8F8F2",
       primary: "#282A36",
+      secondary: "#383a59",
       yellow: "#f4f99d",
       purple: "#C9A8EE",
-      red: "#FF98A2"
+      red: "#FF98A2",
+      pink: "#ff92d0",
+      cyan: "#9AEDFE",
+      blue: "#6272a4"
     },
     extend: {
       fontFamily: {
