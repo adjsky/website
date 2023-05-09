@@ -12,8 +12,8 @@ import type { RefObject } from "react"
 const fontSizeRem = 0.875
 const lineHeightRem = 1.125
 
-// to keep things easy i'll leave here a hardcoded value
-// because i haven't found an easy solution to compute a single character width
+// to keep things simple i'll leave here a hardcoded value
+// because i haven't found an easy solution to compute a single character width using Web APIs
 const charWidth = 0.525390625
 
 type Offset = {
