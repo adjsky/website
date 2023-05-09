@@ -6,7 +6,7 @@ import TerminalHeader from "./terminal-header"
 import CodeBlock from "./code-block"
 
 const code = `// Who am I?
-let title = "Fullstack developer"
+let title = "Fullstack dev."
 let name = "Kirill Timchenko"
 let location = "St. Petersburg, Russia"
 
@@ -17,8 +17,8 @@ let hobby = [
 ]
 
 // Contacts
-let email = "infiernodeltroel@gmail.com"
-let github = "https://github.com/adjsky"
+let email = "igorlfmartins@mail.ru"
+let github = "github.com/adjsky"
 `
 
 const Terminal: React.FC = () => {
